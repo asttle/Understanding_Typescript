@@ -1,29 +1,30 @@
+"use strict";
 // Working with Types
 //number, string, boolean, object, array, tuple, enum, any
 function add(n1, n2) {
     return n1 + n2;
 }
-var number1 = 5;
-var number2 = 2.8;
+const number1 = 5;
+const number2 = 2.8;
 console.log(add(number1, number2));
 //objects
-var person = {
+const person = {
     name: "Asttle",
-    age: 25
+    age: 25,
 };
 console.log(person.name);
 // array
-var employee_details = {
+const employee_details = {
     name: "Asttle",
     age: 30,
-    hobbies: ["games", "music"]
+    hobbies: ["games", "music"],
 };
 console.log(employee_details.hobbies);
 //Tuples
 // setting array with restricted number of elements
-var business = {
+const business = {
     business_name: "ABC",
-    role: [1, "Developer"]
+    role: [1, "Developer"],
 };
 business.role.push("HR"); // exception it should not be but it allows. Atleast it restricts type
 console.log(business.role);
@@ -46,13 +47,13 @@ var DiffTypes;
     DiffTypes[DiffTypes["age"] = 25] = "age";
 })(DiffTypes || (DiffTypes = {})); // we can define values of different types
 //any
-var favorites; // it can be of any type
+let favorites; // it can be of any type
 // maximum try to avoid this
 //Union Types
 // pass 2 types of inputs for functions
 //function that adds if number or concats if string
 function combine(n1, n2) {
-    var result;
+    let result;
     if (typeof n1 === "number" && typeof n2 === "number") {
         result = n1 + n2;
     }
@@ -61,12 +62,12 @@ function combine(n1, n2) {
     }
     return result;
 }
-var combineages = combine(30, 26);
-var combinenames = combine("Max", "millian");
+const combineages = combine(30, 26);
+const combinenames = combine("Max", "millian");
 //Literal types
 // for an argument if you want to allow only n values for a type then we can use literals
 function combineAnyData(n1, n2, resultType) {
-    var result;
+    let result;
     if ((typeof n1 === "number" && typeof n2 === "number") ||
         resultType === "as-number") {
         result = +n1 + +n2;
@@ -76,11 +77,11 @@ function combineAnyData(n1, n2, resultType) {
     }
     return result;
 }
-var combinenumber = combineAnyData(30, 20, "as-number");
-var combineStringwithnumbervalues = combineAnyData("30", "20", "as-number");
-var combineText = combineAnyData("Asttle", "Joseph", "as-text");
+const combinenumber = combineAnyData(30, 20, "as-number");
+const combineStringwithnumbervalues = combineAnyData("30", "20", "as-number");
+const combineText = combineAnyData("Asttle", "Joseph", "as-text");
 function combineWithAlias(n1, n2, resultType) {
-    var result;
+    let result;
     if ((typeof n1 === "number" && typeof n2 === "number") ||
         resultType === "as-number") {
         result = +n1 + +n2;
@@ -100,25 +101,25 @@ function printResult(result) {
     console.log("Result", result);
 }
 // Function as Types
-var addVariable;
+let addVariable;
 addVariable = addition;
 console.log(addVariable(5, 10)); // problem is addVariable is any type so in future if addVariable is assigned another value we will get runtime error
-var addFunction;
+let addFunction;
 addFunction = addition;
 console.log(addVariable(5, 10)); // eventhough it restricts to function we can define any function to addFunction. So we will not get desired result and desired function executed
-var addFunctionType; // we can assign a function which accpets 2 numbers and return a numnber
+let addFunctionType; // we can assign a function which accpets 2 numbers and return a numnber
 addFunctionType = addition;
 //Function Types and callbacks
 function addAndHandleCallback(n1, n2, cb) {
-    var result = n1 + n2;
+    const result = n1 + n2;
     cb(result);
 }
-addAndHandleCallback(20, 30, function (result) {
+addAndHandleCallback(20, 30, (result) => {
     console.log(result);
 });
 // unknown type
-var userInput;
-var userName;
+let userInput;
+let userName;
 userInput = "Asttle";
 //even though userinput holds a string it cannot be assigned to username.t is a strict version of any type
 // so we need to typecheck before assigning, so only unkown is recommended for any
